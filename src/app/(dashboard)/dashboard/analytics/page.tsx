@@ -1,7 +1,7 @@
 'use client'
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui'
+import { Badge } from '@/components/ui'
 
 export default function AnalyticsPage() {
     return (
