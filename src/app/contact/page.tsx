@@ -57,27 +57,61 @@ export default function ContactPage() {
                         {/* Contact Info */}
                         <div className="space-y-8">
                             <div>
-                                <h2 className="text-2xl font-bold text-[var(--wat-secondary)] mb-6">
-                                    معلومات التواصل
+                                <h2 className="text-2xl font-bold text-[var(--wat-secondary)] mb-6 animate-slide-in-right">
+                                    قنوات التواصل
                                 </h2>
                                 <div className="space-y-6">
-                                    {contactInfo.map((info, i) => (
-                                        <a
-                                            key={i}
-                                            href={info.href}
-                                            className="flex items-start gap-4 group"
-                                        >
-                                            <div className="text-2xl">{info.icon}</div>
-                                            <div>
-                                                <div className="text-sm text-[var(--wat-text-muted)]">
-                                                    {info.title}
-                                                </div>
-                                                <div className="text-white group-hover:text-[var(--wat-secondary)] transition-colors">
-                                                    {info.value}
-                                                </div>
+                                    {/* WhatsApp - Priority */}
+                                    <a
+                                        href="https://wa.me/905364599079"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-4 group p-4 rounded-xl glass border border-white/5 hover:border-[#25D366]/50 hover:bg-[#25D366]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(37,211,102,0.2)]"
+                                    >
+                                        <div className="w-12 h-12 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] text-2xl group-hover:scale-110 transition-transform">
+                                            📱
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-[var(--wat-text-muted)]">واتس اب (مباشر)</div>
+                                            <div className="text-lg font-bold text-white group-hover:text-[#25D366] transition-colors dir-ltr">
+                                                +90 536 459 9079
                                             </div>
-                                        </a>
-                                    ))}
+                                        </div>
+                                    </a>
+
+                                    {/* Instagram - Social */}
+                                    <a
+                                        href="https://www.instagram.com/_watmedia?igsh=MWlsMHJ2Z3FnbTdzbA=="
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-4 group p-4 rounded-xl glass border border-white/5 hover:border-[#E1306C]/50 hover:bg-[#E1306C]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(225,48,108,0.2)]"
+                                    >
+                                        <div className="w-12 h-12 rounded-full bg-[#E1306C]/20 flex items-center justify-center text-[#E1306C] text-2xl group-hover:scale-110 transition-transform">
+                                            📸
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-[var(--wat-text-muted)]">انستغرام</div>
+                                            <div className="text-lg font-bold text-white group-hover:text-[#E1306C] transition-colors">
+                                                @_watmedia
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    {/* Email */}
+                                    <a
+                                        href="mailto:hello@watmedia.com"
+                                        className="flex items-center gap-4 group p-4 rounded-xl glass border border-white/5 hover:border-[var(--wat-secondary)]/50 hover:bg-[var(--wat-secondary)]/10 transition-all duration-300 hover:-translate-y-1"
+                                    >
+                                        <div className="w-12 h-12 rounded-full bg-[var(--wat-secondary)]/20 flex items-center justify-center text-[var(--wat-secondary)] text-2xl group-hover:scale-110 transition-transform">
+                                            📧
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-[var(--wat-text-muted)]">البريد الإلكتروني</div>
+                                            <div className="text-lg font-bold text-white group-hover:text-[var(--wat-secondary)] transition-colors">
+                                                hello@watmedia.com
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -85,24 +119,14 @@ export default function ContactPage() {
                                 <h3 className="text-lg font-semibold text-[var(--wat-secondary)] mb-4">
                                     ساعات العمل
                                 </h3>
-                                <div className="space-y-2">
+                                <div className="space-y-2 glass p-4 rounded-xl border border-white/5">
                                     {workingHours.map((item, i) => (
-                                        <div key={i} className="flex justify-between text-sm">
+                                        <div key={i} className="flex justify-between text-sm py-2 border-b border-white/5 last:border-0">
                                             <span className="text-[var(--wat-text-muted)]">{item.day}</span>
-                                            <span className="text-white">{item.hours}</span>
+                                            <span className="text-white font-medium">{item.hours}</span>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-
-                            <div className="glass p-6 rounded-2xl">
-                                <h3 className="text-lg font-semibold text-[var(--wat-secondary)] mb-2">
-                                    💡 نصيحة
-                                </h3>
-                                <p className="text-sm text-[var(--wat-text-muted)]">
-                                    للحصول على أسرع استجابة، أخبرنا بتفاصيل مشروعك ومتطلباتك في الرسالة.
-                                    كلما كانت المعلومات أكثر، كان اقتراحنا أفضل!
-                                </p>
                             </div>
                         </div>
 

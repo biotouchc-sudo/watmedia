@@ -19,6 +19,8 @@ import { CrystalConcierge } from '@/components/layout/CrystalConcierge'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { BackToTop } from '@/components/layout/BackToTop'
 import { CommandPalette } from '@/components/layout/CommandPalette'
+import { Header } from '@/components/layout/Header'
+import { EasterEggProvider } from '@/hooks/useKonamiCode'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -68,47 +70,11 @@ export default function RootLayout({
                     {/* Cyborg Arsenal: Command Palette (CMD+K) */}
                     <CommandPalette />
 
-                    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-[var(--wat-glass-border)] h-20">
-                        <nav className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-                            <div className="flex items-center gap-6">
-                                <Link href="/" className="text-2xl font-bold gradient-text">
-                                    WATMEDIA
-                                </Link>
-                                <div className="hidden md:block">
-                                    <StatusPulse />
-                                </div>
-                            </div>
+                    <Header />
 
-                            {/* Navigation Links */}
-                            <div className="hidden md:flex items-center gap-8">
-                                <Link href="/services" className="text-sm text-[var(--wat-text-muted)] hover:text-white transition-colors">الخدمات</Link>
-                                <Link href="/portfolio" className="text-sm text-[var(--wat-text-muted)] hover:text-white transition-colors">أعمالنا</Link>
-                                <Link href="/about" className="text-sm text-[var(--wat-text-muted)] hover:text-white transition-colors">من نحن</Link>
-                                <Link href="/contact" className="text-sm text-[var(--wat-text-muted)] hover:text-white transition-colors">اتصل بنا</Link>
-                            </div>
-
-                            <div className="flex items-center gap-4">
-                                <SignedOut>
-                                    <SignInButton mode="modal">
-                                        <button className="text-sm text-[var(--wat-text-muted)] hover:text-white pointer-events-auto">تسجيل الدخول</button>
-                                    </SignInButton>
-                                    <SignUpButton mode="modal">
-                                        <button className="bg-[var(--wat-primary)] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[var(--wat-secondary)] hover:text-black transition-all glow pointer-events-auto">ابدأ الآن</button>
-                                    </SignUpButton>
-                                </SignedOut>
-                                <SignedIn>
-                                    <Link href="/dashboard" className="text-sm text-[var(--wat-text-muted)] hover:text-white">لوحة التحكم</Link>
-                                    <UserButton afterSignOutUrl="/" />
-                                </SignedIn>
-                                {/* Keyboard Shortcut Hint */}
-                                <kbd className="hidden lg:inline-flex h-6 items-center gap-1 rounded border border-[var(--wat-glass-border)] bg-[var(--wat-surface)] px-2 text-[10px] text-[var(--wat-text-muted)]">
-                                    ⌘K
-                                </kbd>
-                            </div>
-                        </nav>
-                    </header>
-
-                    {children}
+                    <EasterEggProvider>
+                        {children}
+                    </EasterEggProvider>
 
                     {/* Cyborg Arsenal: Floating Elements */}
                     <CrystalConcierge />

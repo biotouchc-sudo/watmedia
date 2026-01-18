@@ -5,17 +5,33 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  /* WATMEDIA Design Tokens - 2026 Core */
-  --wat-primary: #f59e0b;
-  --wat-primary-glow: rgba(245, 158, 11, 0.4);
-  --wat-secondary: #00f2fe;
-  --wat-secondary-glow: rgba(0, 242, 254, 0.4);
-  --wat-bg: #030303;
-  --wat-surface: #0a0a0a;
-  --wat-glass-bg: rgba(15, 15, 15, 0.7);
-  --wat-glass-border: rgba(255, 255, 255, 0.1);
-  --wat-text-main: #ffffff;
-  --wat-text-muted: #a1a1aa;
+  /* WATMEDIA Design Tokens - Supreme Edition */
+  --wat-primary: #FFD700;
+  /* Rich Gold */
+  --wat-primary-dim: #D4AF37;
+  --wat-secondary: #00E5FF;
+  /* Electric Cyan */
+  --wat-accent: #FF0055;
+  /* Neon Red for accents */
+
+  /* Deep Space Theme */
+  --wat-bg: #050505;
+  --wat-surface: #0f0f0f;
+  --wat-surface-highlight: #1a1a1a;
+
+  /* Advanced Glass */
+  --wat-glass-bg: rgba(20, 20, 20, 0.65);
+  --wat-glass-border: rgba(255, 255, 255, 0.08);
+  --wat-glass-highlight: rgba(255, 255, 255, 0.05);
+
+  /* Mappings / Aliases */
+  --wat-background: var(--wat-bg);
+  --background: var(--wat-bg);
+  --foreground: var(--wat-text-main);
+
+  /* Typography */
+  --wat-text-main: #FFFFFF;
+  --wat-text-muted: #94A3B8;
 
   /* Glassmorphism */
   --wat-glass-blur: 12px;

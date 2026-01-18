@@ -18,10 +18,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 <input
                     type={type}
                     className={cn(
-                        'flex h-12 w-full rounded-xl border bg-[var(--wat-surface)] px-4 py-2 text-base text-[var(--wat-text)] placeholder:text-[var(--wat-text-muted)] transition-all duration-200',
-                        'border-[var(--wat-glass-border)] focus:border-[var(--wat-primary)] focus:ring-2 focus:ring-[var(--wat-primary)]/20 focus:outline-none',
-                        'disabled:cursor-not-allowed disabled:opacity-50',
-                        error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
+                        'flex h-12 w-full rounded-xl border bg-[var(--wat-surface)]/50 px-4 py-2 text-base text-[var(--wat-text)] placeholder:text-[var(--wat-text-muted)] transition-all duration-300',
+                        'border-white/10 focus:border-[var(--wat-primary)] focus:bg-[var(--wat-surface)] focus:ring-4 focus:ring-[var(--wat-primary)]/10 focus:outline-none focus:shadow-[0_0_20px_rgba(245,158,11,0.1)]',
+                        'disabled:cursor-not-allowed disabled:opacity-50 hover:border-[var(--wat-primary)]/50',
+                        error && 'border-destructive focus:border-destructive focus:ring-destructive/20',
                         className
                     )}
                     ref={ref}
