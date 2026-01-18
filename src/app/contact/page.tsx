@@ -1,4 +1,4 @@
-import { ContactForm } from '@/components/forms/ContactForm'
+import { SmartContactForm } from '@/components/forms/SmartContactForm'
 import { Footer } from '@/components/layout/Footer'
 import type { Metadata } from 'next'
 
@@ -135,7 +135,7 @@ export default function ContactPage() {
                             <h2 className="text-2xl font-bold text-[var(--wat-secondary)] mb-6">
                                 أرسل لنا رسالة
                             </h2>
-                            <ContactForm />
+                            <SmartContactForm />
                         </div>
                     </div>
                 </section>

@@ -21,7 +21,7 @@ export default function Home() {
                 {/* Tagline */}
                 <p className="text-2xl md:text-3xl text-[var(--wat-text-muted)] max-w-2xl mx-auto animate-fade-in-delay leading-relaxed">
                     مهندسو النمو الرقمي. <br className="hidden md:block" />
-                    <span className="text-white font-medium">نحن لا نتوقع النتائج، نحن نهندسها.</span>
+                    <span className="text-white font-medium inline-block hover:translate-x-1 transition-transform duration-500 cursor-default">نحن لا نتوقع النتائج، نحن نهندسها.</span>
                 </p>
 
                 {/* CTA Buttons */}
@@ -68,6 +68,6 @@ export default function Home() {
                     <EcosystemSection />
                 </div>
             </main>
-        </div>
+        </div >
     );
 }

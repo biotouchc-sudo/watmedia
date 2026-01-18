@@ -47,12 +47,14 @@ export function useKonamiCode(callback: () => void) {
 
   useEffect(() => {
     if (input.length === KONAMI_CODE.length) {
-      const matches = input.every((key, index) => 
+      const matches = input.every((key, index) =>
         key.toLowerCase() === KONAMI_CODE[index].toLowerCase()
       )
-      
+
       if (matches) {
         handleCallback()
+        // Level 38: Cognitive Closure
+        import('@/lib/confetti').then(mod => mod.triggerConfetti())
         setInput([])
       }
     }
@@ -71,7 +73,7 @@ export function EasterEggProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       const audio = new Audio('/sounds/secret.mp3') // Optional sound
       audio.volume = 0.3
-      audio.play().catch(() => {}) // Ignore if no sound file
+      audio.play().catch(() => { }) // Ignore if no sound file
 
       // Create floating message
       const div = document.createElement('div')
@@ -108,7 +110,7 @@ export function EasterEggProvider({ children }: { children: React.ReactNode }) {
         </div>
       `
       document.body.appendChild(div)
-      
+
       // Auto-remove after 5 seconds
       setTimeout(() => div.remove(), 10000)
     }
