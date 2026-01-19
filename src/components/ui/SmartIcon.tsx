@@ -50,6 +50,23 @@ const iconLibrary: Record<string, IconState> = {
             "M5 12h14",
         ],
     },
+    architect: {
+        paths: [
+            "M4 22h16M12 2v20M8 22V6h8v16M4 6h16", // Simple classic column structure
+        ]
+    },
+    visual: {
+        paths: [
+            "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z", // Eye shape
+            "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", // Iris
+        ]
+    },
+    growth: {
+        paths: [
+            "M23 6l-9.5 9.5-5-5L1 18", // Chart line
+            "M17 6h6v6", // Arrow tip
+        ]
+    }
 };
 
 interface SmartIconProps {
@@ -140,6 +157,157 @@ export function SmartIconButton({
             whileTap={{ scale: 0.95 }}
         >
             <SmartIcon icon={isActive ? activeIcon : initialIcon} size={size} />
+        </motion.button>
+    );
+}
+
+/**
+ * L226 Variant: Pulsing Icon
+ * Attention-grabbing pulse animation for notifications/alerts
+ */
+interface PulsingIconProps {
+    icon: keyof typeof iconLibrary;
+    size?: number;
+    className?: string;
+    pulseColor?: string;
+    pulseScale?: number;
+}
+
+export function PulsingIcon({
+    icon,
+    size = 24,
+    className,
+    pulseColor = "var(--wat-primary)",
+    pulseScale = 1.5,
+}: PulsingIconProps) {
+    return (
+        <span
+            className={cn("relative inline-flex items-center justify-center", className)}
+            style={{ width: size * 1.5, height: size * 1.5 }}
+        >
+            {/* Pulse Ring */}
+            <motion.span
+                className="absolute inset-0 rounded-full"
+                style={{
+                    backgroundColor: pulseColor,
+                    opacity: 0.3,
+                }}
+                animate={{
+                    scale: [1, pulseScale],
+                    opacity: [0.3, 0],
+                }}
+                transition={{
+                    duration: 1.5,
+                    ease: "easeOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                }}
+            />
+            <SmartIcon icon={icon} size={size} className="relative z-10" />
+        </span>
+    );
+}
+
+/**
+ * L226 Variant: Floating Icon
+ * Gentle floating animation for decorative icons
+ */
+interface FloatingIconProps {
+    icon: keyof typeof iconLibrary;
+    size?: number;
+    className?: string;
+    floatDistance?: number;
+    duration?: number;
+}
+
+export function FloatingIcon({
+    icon,
+    size = 24,
+    className,
+    floatDistance = 5,
+    duration = 3,
+}: FloatingIconProps) {
+    return (
+        <motion.span
+            className={cn("inline-flex items-center justify-center", className)}
+            animate={{
+                y: [-floatDistance, floatDistance, -floatDistance],
+            }}
+            transition={{
+                duration,
+                ease: "easeInOut",
+                repeat: Infinity,
+            }}
+        >
+            <SmartIcon icon={icon} size={size} />
+        </motion.span>
+    );
+}
+
+/**
+ * L226 Variant: Ripple Icon Button
+ * Click feedback with ripple effect
+ */
+interface RippleIconButtonProps {
+    icon: keyof typeof iconLibrary;
+    size?: number;
+    className?: string;
+    rippleColor?: string;
+    onClick?: () => void;
+}
+
+export function RippleIconButton({
+    icon,
+    size = 24,
+    className,
+    rippleColor = "var(--wat-primary)",
+    onClick,
+}: RippleIconButtonProps) {
+    const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        const newRipple = { id: Date.now(), x, y };
+        setRipples(prev => [...prev, newRipple]);
+
+        setTimeout(() => {
+            setRipples(prev => prev.filter(r => r.id !== newRipple.id));
+        }, 600);
+
+        onClick?.();
+    };
+
+    return (
+        <motion.button
+            className={cn(
+                "relative inline-flex items-center justify-center overflow-hidden rounded-full bg-transparent border-none cursor-pointer p-3",
+                className
+            )}
+            onClick={handleClick}
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.05)" }}
+            whileTap={{ scale: 0.95 }}
+        >
+            {/* Ripples */}
+            {ripples.map(ripple => (
+                <motion.span
+                    key={ripple.id}
+                    className="absolute rounded-full pointer-events-none"
+                    style={{
+                        left: ripple.x,
+                        top: ripple.y,
+                        width: size,
+                        height: size,
+                        backgroundColor: rippleColor,
+                    }}
+                    initial={{ scale: 0, opacity: 0.5 }}
+                    animate={{ scale: 3, opacity: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                />
+            ))}
+            <SmartIcon icon={icon} size={size} className="relative z-10" />
         </motion.button>
     );
 }

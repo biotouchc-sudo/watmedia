@@ -5,6 +5,8 @@ import { SmartLink } from '@/components/ui/SmartLink'
 import { PhysicsReveal } from '@/components/ui/PhysicsReveal'
 import { Marquee } from '@/components/ui/Marquee'
 import { MagneticButton } from '@/components/ui/MagneticButton'
+import { SmartIcon, FloatingIcon } from '@/components/ui/SmartIcon'
+import { GlassCard } from '@/components/ui/GlassCard'
 
 export default function Home() {
     return (
@@ -18,7 +20,7 @@ export default function Home() {
                 {/* Massive Typography */}
                 <div className="relative w-full max-w-[1400px] mx-auto text-center md:text-left flex flex-col md:gap-4 overflow-hidden">
                     <PhysicsReveal className="w-full">
-                        <h1 className="text-[15vw] leading-[0.8] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 animate-slide-in-up mix-blend-difference">
+                        <h1 className="text-[15vw] leading-[0.8] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60 animate-slide-in-up drop-shadow-2xl">
                             WATMEDIA
                         </h1>
                     </PhysicsReveal>
@@ -72,41 +74,50 @@ export default function Home() {
                 {/* Bento Grid - Features */}
                 <div className="w-full max-w-[1400px] mt-32 grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6">
                     {/* Large Card */}
-                    <PhysicsReveal className="md:col-span-4 md:row-span-2 glass rounded-[2rem] p-10 flex flex-col justify-between overflow-hidden relative group border-[var(--wat-glass-border)] hover:border-[var(--wat-primary-dim)] transition-colors duration-700">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--wat-primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        <div>
-                            <div className="w-16 h-16 rounded-2xl bg-[var(--wat-surface)] border border-[var(--wat-glass-border)] flex items-center justify-center text-3xl mb-6 shadow-2xl">🏛️</div>
+                    <GlassCard
+                        enableTilt
+                        className="md:col-span-4 md:row-span-2 p-10 flex flex-col justify-between group hover:border-[var(--wat-primary-dim)]"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--wat-primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        <div className="relative z-10">
+                            <div className="w-16 h-16 rounded-2xl bg-[var(--wat-surface)] border border-[var(--wat-glass-border)] flex items-center justify-center text-[var(--wat-primary)] mb-6 shadow-2xl">
+                                <FloatingIcon icon="architect" size={32} />
+                            </div>
                             <h3 className="text-4xl font-bold text-white mb-4">Architect Core.</h3>
                             <p className="text-xl text-[var(--wat-text-muted)] max-w-lg">
                                 بنية تحتية رقمية صممت لتعيش عقوداً. كود نظيف، أداء مرعب، وأمان سيبراني من المستوى الحكومي.
                             </p>
                         </div>
-                        <div className="mt-8 flex gap-2">
+                        <div className="mt-8 flex gap-2 relative z-10">
                             <div className="h-1 flex-1 bg-[var(--wat-surface-highlight)] rounded-full overflow-hidden">
                                 <div className="h-full bg-[var(--wat-primary)] w-[85%] animate-pulse-glow" />
                             </div>
                             <span className="text-xs font-mono text-[var(--wat-primary)]">SCORE: 98/100</span>
                         </div>
-                    </PhysicsReveal>
+                    </GlassCard>
 
                     {/* Medium Card 1 */}
-                    <PhysicsReveal className="md:col-span-2 glass rounded-[2rem] p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border-[var(--wat-glass-border)] hover:border-white/20">
+                    <GlassCard enableTilt tiltIntensity={10} className="md:col-span-2 p-8 group hover:border-white/20">
                         <div className="absolute top-0 right-0 p-32 bg-[var(--wat-secondary)]/5 blur-[80px] rounded-full pointer-events-none" />
-                        <h3 className="text-2xl font-bold text-white mb-2">Visual Pulse</h3>
-                        <p className="text-sm text-[var(--wat-text-muted)]">هوية بصرية تخطف الأنفاس.</p>
-                        <div className="mt-4 flex items-center justify-end">
-                            <span className="text-5xl group-hover:scale-125 transition-transform duration-500 delay-100">🎨</span>
+                        <div className="relative z-10">
+                            <h3 className="text-2xl font-bold text-white mb-2">Visual Pulse</h3>
+                            <p className="text-sm text-[var(--wat-text-muted)]">هوية بصرية تخطف الأنفاس.</p>
+                            <div className="mt-4 flex items-center justify-end text-[var(--wat-primary)]">
+                                <SmartIcon icon="visual" size={48} className="group-hover:scale-125 transition-transform duration-500 delay-100" />
+                            </div>
                         </div>
-                    </PhysicsReveal>
+                    </GlassCard>
 
                     {/* Medium Card 2 */}
-                    <PhysicsReveal className="md:col-span-2 glass rounded-[2rem] p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border-[var(--wat-glass-border)] hover:border-white/20">
-                        <h3 className="text-2xl font-bold text-white mb-2">Growth Engine</h3>
-                        <p className="text-sm text-[var(--wat-text-muted)]">نمو لا يتوقف.</p>
-                        <div className="mt-4 flex items-center justify-end">
-                            <span className="text-5xl group-hover:scale-125 transition-transform duration-500 delay-100 invert">📈</span>
+                    <GlassCard enableTilt tiltIntensity={10} className="md:col-span-2 p-8 group hover:border-white/20">
+                        <div className="relative z-10">
+                            <h3 className="text-2xl font-bold text-white mb-2">Growth Engine</h3>
+                            <p className="text-sm text-[var(--wat-text-muted)]">نمو لا يتوقف.</p>
+                            <div className="mt-4 flex items-center justify-end text-[var(--wat-secondary)]">
+                                <SmartIcon icon="growth" size={48} className="group-hover:scale-125 transition-transform duration-500 delay-100" />
+                            </div>
                         </div>
-                    </PhysicsReveal>
+                    </GlassCard>
                 </div>
 
                 {/* Ecosystem Section */}

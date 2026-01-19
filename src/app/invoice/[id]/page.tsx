@@ -2,7 +2,7 @@ import { db } from '@/db'
 import { invoices, users } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
-import InvoiceTemplate from '@/components/invoice/InvoiceTemplate'
+import InvoiceTemplate from '@/components/business/invoice/InvoiceTemplate'
 import { Button } from '@/components/ui'
 import Link from 'next/link'
 

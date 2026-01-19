@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, jsonb, boolean } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(), // Changed to text to store Clerk ID (user_xyz)
@@ -48,4 +48,15 @@ export const invoices = pgTable("invoices", {
   projectId: text("project_id").references(() => projects.id),
   date: timestamp("date").defaultNow().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const subscriptions = pgTable("subscriptions", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").references(() => users.id).notNull(),
+  status: text("status").notNull(),
+  priceId: text("price_id"),
+  cancelAtPeriodEnd: boolean("cancel_at_period_end").default(false),
+  currentPeriodEnd: timestamp("current_period_end"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

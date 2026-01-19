@@ -27,7 +27,7 @@ export default function InvoiceTemplate({ data }: InvoiceProps) {
                 <div>
                     <h1 className="text-4xl font-bold text-gray-900 mb-2">WATMEDIA</h1>
                     <p className="text-gray-500 text-sm">Riyadh, Saudi Arabia</p>
-                    <p className="text-gray-500 text-sm">support@watmedia.sa</p>
+                    <p className="text-gray-500 text-sm">contact@watmedia.netlify.app</p>
                 </div>
                 <div className="text-right">
                     <h2 className="text-2xl font-light text-gray-400 mb-2">INVOICE</h2>

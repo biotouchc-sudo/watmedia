@@ -59,7 +59,8 @@ export default function ServicesPage() {
             <main className="min-h-screen bg-[var(--wat-background)]">
                 {/* Hero Section */}
                 <section className="relative py-32 px-6 overflow-hidden flex items-center justify-center min-h-[50vh]">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,242,254,0.1)_0%,transparent_60%)] pointer-events-none" />
+                    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+                    <div className="absolute top-[-20%] right-0 w-[600px] h-[600px] bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
                     <div className="max-w-5xl mx-auto text-center relative z-10">
                         <h1 className="text-6xl md:text-8xl font-bold mb-8 gradient-text animate-fade-in tracking-tight">
                             خدماتنا

@@ -10,7 +10,6 @@ import {
 } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { CursorProvider } from '@/components/ui/CustomCursor'
 import { SoundProvider } from '@/components/ui/SoundSystem'
@@ -34,6 +33,7 @@ import { GlobalCanvas } from '@/components/layout/GlobalCanvas'
 import { SmartToaster } from '@/components/ui/SmartToaster'
 import { LivingBackground } from '@/components/features/LivingBackground'
 import { VoiceInterface } from '@/components/features/VoiceInterface'
+import { BioAuth } from '@/components/features/BioAuth'
 import { Footer } from '@/components/layout/Footer'
 
 const geistSans = Geist({
@@ -54,10 +54,16 @@ export const metadata: Metadata = {
     description: 'شريكك في هندسة النمو الرقمي. نحن لا نتوقع النتائج، نحن نهندسها.',
     keywords: ['تصميم مواقع', 'تطوير ويب', 'تسويق رقمي', 'SEO', 'السعودية'],
     authors: [{ name: 'WATMEDIA' }],
+    icons: {
+        icon: '/logo.png',
+        apple: '/logo.png',
+    },
     openGraph: {
         type: 'website',
         locale: 'ar_SA',
         siteName: 'WATMEDIA',
+        url: 'https://watmedia.netlify.app',
+        images: [{ url: '/logo.png', width: 512, height: 512, alt: 'WATMEDIA' }],
     },
 }
 
@@ -107,9 +113,11 @@ export default function RootLayout({
                                 <RageDetector />
                                 <PrivacyMask />
                                 <AutoThemeController />
+                                <VoiceInterface />
+                                <BioAuth />
+                                <LivingBackground />
 
                                 <GlobalCanvas />
-                                <Analytics />
 
                                 {/* JSON-LD Structured Data */}
                                 <script
@@ -119,8 +127,8 @@ export default function RootLayout({
                                             "@context": "https://schema.org",
                                             "@type": "Organization",
                                             "name": "WATMEDIA",
-                                            "url": "https://watmedia.sa",
-                                            "logo": "https://watmedia.sa/logo.png",
+                                            "url": "https://watmedia.netlify.app",
+                                            "logo": "https://watmedia.netlify.app/logo.png",
                                             "description": "نحن نبني المستقبل الرقمي. حلول متكاملة في التكنولوجيا، التصميم، والنمو.",
                                             "address": {
                                                 "@type": "PostalAddress",

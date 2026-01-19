@@ -73,8 +73,8 @@ export default function PortfolioPage() {
             <main className="min-h-screen bg-[var(--wat-background)]">
                 {/* Hero Section */}
                 <section className="relative py-32 px-6 overflow-hidden flex items-center justify-center min-h-[60vh]">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.05)_0%,transparent_70%)] pointer-events-none animate-pulse-slow" />
-                    <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--wat-glass-border)] to-transparent" />
+                    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[var(--wat-primary)]/5 blur-[120px] rounded-full pointer-events-none" />
 
                     <div className="max-w-5xl mx-auto text-center relative z-10">
                         <Badge variant="supreme" className="mb-8 mx-auto hover:scale-105 transition-transform cursor-default">

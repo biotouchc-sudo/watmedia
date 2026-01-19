@@ -5,6 +5,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { TextFillHover } from "@/components/ui/TextFillHover";
 
 /**
  * MEGA FOOTER (L200-L260 Compliant)
@@ -90,10 +91,15 @@ export function Footer() {
                                         <li key={link.href}>
                                             <Link
                                                 href={link.href}
-                                                className="text-sm text-[var(--wat-text-muted)] hover:text-[var(--wat-primary)] transition-colors inline-flex items-center group"
+                                                className="text-sm inline-flex items-center group"
                                             >
-                                                <span className="w-0 group-hover:w-2 transition-all duration-300 h-[1px] bg-[var(--wat-primary)] mr-0 group-hover:mr-2" />
-                                                {link.label}
+                                                <TextFillHover
+                                                    fillColor="var(--wat-primary)"
+                                                    baseColor="var(--wat-text-muted)"
+                                                    direction="left"
+                                                >
+                                                    {link.label}
+                                                </TextFillHover>
                                             </Link>
                                         </li>
                                     ))}
