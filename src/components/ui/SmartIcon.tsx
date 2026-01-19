@@ -17,54 +17,59 @@ interface IconState {
 const iconLibrary: Record<string, IconState> = {
     menu: {
         paths: [
-            "M4 6h16M4 12h16M4 18h16", // Three lines
+            "M4 8h16M4 16h16", // Clean double line
         ],
     },
     close: {
         paths: [
-            "M6 6l12 12M6 18L18 6", // X shape
+            "M18 6L6 18M6 6l12 12", // X
         ],
     },
     arrow_right: {
         paths: [
-            "M5 12h14M12 5l7 7-7 7",
+            "M5 12h14M12 5l7 7-7 7", // Arrow R
         ],
     },
     arrow_left: {
         paths: [
-            "M19 12H5M12 19l-7-7 7-7",
+            "M19 12H5M12 19l-7-7 7-7", // Arrow L
         ],
     },
     check: {
         paths: [
-            "M5 12l5 5L20 7",
+            "M20 6L9 17l-5-5", // Check
         ],
     },
     plus: {
         paths: [
-            "M12 5v14M5 12h14",
+            "M5 12h14M12 5v14", // Plus
         ],
     },
     minus: {
         paths: [
-            "M5 12h14",
+            "M5 12h14", // Minus
         ],
     },
     architect: {
         paths: [
-            "M4 22h16M12 2v20M8 22V6h8v16M4 6h16", // Simple classic column structure
+            // Layers / Stack -> Represents Structure & Code
+            "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
         ]
     },
     visual: {
         paths: [
-            "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z", // Eye shape
-            "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", // Iris
+            // Eye / Aperture -> Represents Vision & Design
+            "M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z",
+            "M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
         ]
     },
     growth: {
         paths: [
-            "M23 6l-9.5 9.5-5-5L1 18", // Chart line
-            "M17 6h6v6", // Arrow tip
+            // Rocket / Trend -> Represents Growth & Engine
+            "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z",
+            "M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z",
+            "M9 9l1.5 1.5",
+            "M15 15l1.5 1.5"
         ]
     }
 };

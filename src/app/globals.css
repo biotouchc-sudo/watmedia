@@ -110,6 +110,37 @@
   /* Fonts */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
+
+  /* SHADCN COMPATIBILITY LAYER (Fixes Contrast Issues) */
+  --background: var(--wat-bg);
+  --foreground: var(--wat-text-main);
+  
+  --card: var(--wat-surface);
+  --card-foreground: var(--wat-text-main);
+  
+  --popover: var(--wat-surface);
+  --popover-foreground: var(--wat-text-main);
+  
+  --primary: var(--wat-primary);
+  --primary-foreground: var(--wat-bg);
+  
+  --secondary: var(--wat-secondary);
+  --secondary-foreground: var(--wat-bg);
+  
+  --muted: var(--wat-surface-highlight);
+  --muted-foreground: var(--wat-text-muted);
+  
+  --accent: var(--wat-surface-highlight);
+  --accent-foreground: var(--wat-text-main);
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  
+  --border: var(--wat-glass-border);
+  --input: var(--wat-glass-border);
+  --ring: var(--wat-primary);
+  
+  --radius: 0.75rem;
 }
 
 /* Base mappings */
