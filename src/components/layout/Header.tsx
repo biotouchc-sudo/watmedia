@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { SmartLink } from '@/components/ui/SmartLink'
+import { MagneticButton } from '@/components/ui/MagneticButton'
 import { usePathname } from 'next/navigation'
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { StatusPulse } from './StatusPulse'
@@ -38,7 +39,7 @@ export function Header() {
             <nav className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
                 {/* Brand Identity */}
                 <div className="flex items-center gap-6 group">
-                    <Link href="/" className="relative flex items-center gap-3">
+                    <SmartLink href="/" className="relative flex items-center gap-3" cursorType="video">
                         {/* Logo Icon (Replaced text with dynamic logo concept if image unavailable, leveraging emoji for now or just text) */}
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--wat-primary)] to-[var(--wat-secondary)] flex items-center justify-center text-black font-bold text-xl shadow-[0_0_20px_var(--wat-primary)] group-hover:rotate-12 transition-transform duration-500">
                             W
@@ -46,7 +47,7 @@ export function Header() {
                         <span className="text-2xl font-bold gradient-text tracking-tight">
                             WATMEDIA
                         </span>
-                    </Link>
+                    </SmartLink>
                     <div className="hidden md:block opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                         <StatusPulse />
                     </div>
@@ -57,9 +58,10 @@ export function Header() {
                     {navLinks.map((link) => {
                         const isActive = pathname === link.href
                         return (
-                            <Link
+                            <SmartLink
                                 key={link.href}
                                 href={link.href}
+                                cursorType="text"
                                 className={cn(
                                     "relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                                     isActive
@@ -68,7 +70,7 @@ export function Header() {
                                 )}
                             >
                                 {link.name}
-                            </Link>
+                            </SmartLink>
                         )
                     })}
                 </div>
@@ -82,23 +84,25 @@ export function Header() {
                             </button>
                         </SignInButton>
                         <SignUpButton mode="modal">
-                            <button className="relative group overflow-hidden bg-[var(--wat-primary)] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 hover:shadow-[0_0_30px_var(--wat-primary)]">
-                                <span className="relative z-10 flex items-center gap-2">
-                                    ابدأ الآن <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
-                                </span>
-                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                            </button>
+                            <div className="inline-block">
+                                <MagneticButton className="relative group overflow-hidden bg-[var(--wat-primary)] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 hover:shadow-[0_0_30px_var(--wat-primary)]">
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        ابدأ الآن <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
+                                    </span>
+                                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                                </MagneticButton>
+                            </div>
                         </SignUpButton>
                     </SignedOut>
 
                     <SignedIn>
-                        <Link
+                        <SmartLink
                             href="/dashboard"
                             className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--wat-glass-border)] hover:border-[var(--wat-primary)] transition-colors text-sm font-medium"
                         >
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                             لوحة التحكم
-                        </Link>
+                        </SmartLink>
                         <UserButton
                             afterSignOutUrl="/"
                             appearance={{

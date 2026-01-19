@@ -1,5 +1,6 @@
 import { EcosystemSection } from '@/components/home/EcosystemSection'
-import Link from "next/link";
+import { SmartLink } from '@/components/ui/SmartLink'
+import { PhysicsReveal } from '@/components/ui/PhysicsReveal'
 
 export default function Home() {
     return (
@@ -26,22 +27,24 @@ export default function Home() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col md:flex-row gap-6 mt-8 animate-fade-in-delay items-center">
-                    <Link
+                    <SmartLink
                         href="/dashboard"
+                        cursorType="button"
                         className="group relative px-10 py-5 bg-[var(--wat-primary)] text-white font-bold text-lg rounded-full transition-all duration-300 glow hover:scale-105 hover:bg-[var(--wat-secondary)] hover:text-black shadow-[0_0_30px_rgba(255,215,0,0.3)] hover:shadow-[0_0_50px_rgba(255,215,0,0.6)]"
                     >
                         <span className="relative z-10 flex items-center gap-2">
                             ابدأ رحلتك
                             <span className="text-xl group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1">→</span>
                         </span>
-                    </Link>
-                    <Link
+                    </SmartLink>
+                    <SmartLink
                         href="/portfolio"
+                        cursorType="button"
                         className="group px-10 py-5 glass rounded-full font-bold text-lg text-[var(--wat-text)] hover:border-[var(--wat-primary)] transition-all duration-300 hover:scale-105 hover:bg-[var(--wat-surface-highlight)] flex items-center gap-2"
                     >
                         استعرض أعمالنا
                         <span className="opacity-0 group-hover:opacity-100 transition-opacity">✨</span>
-                    </Link>
+                    </SmartLink>
                 </div>
 
                 {/* Features Grid - Scroll Reveal */}
@@ -51,15 +54,14 @@ export default function Home() {
                         { icon: "🎨", title: "Visual Pulse", desc: "تصميمات تخطف الأنفاس. هوية بصرية لا يمكن تجاهلها." },
                         { icon: "🚀", title: "Growth Engine", desc: "استراتيجيات نمو عدوانية. تحويل الزوار إلى عملاء دائمين." },
                     ].map((feature, i) => (
-                        <div
+                        <PhysicsReveal
                             key={i}
                             className="glass p-8 rounded-3xl text-center border-[var(--wat-glass-border)] hover:border-[var(--wat-primary)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group"
-                            style={{ animationDelay: `${0.2 + i * 0.1}s` }}
                         >
                             <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">{feature.icon}</div>
                             <h3 className="text-2xl font-bold text-[var(--wat-secondary)] mb-3 group-hover:text-white transition-colors">{feature.title}</h3>
                             <p className="text-[var(--wat-text-muted)] leading-relaxed group-hover:text-white/80 transition-colors">{feature.desc}</p>
-                        </div>
+                        </PhysicsReveal>
                     ))}
                 </div>
 

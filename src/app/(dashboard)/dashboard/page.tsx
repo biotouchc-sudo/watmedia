@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
-import Link from 'next/link'
+import { SmartLink } from '@/components/ui/SmartLink'
+import { BioAuth } from '@/components/features/BioAuth'
 import { db } from '@/db'
 import { projects as projectsTable, invoices as invoicesTable } from '@/db/schema'
 import { eq, count } from 'drizzle-orm'
@@ -36,7 +37,7 @@ export default async function DashboardPage() {
     ]
 
     return (
-        <div className="space-y-8 animate-fade-in">
+        <div className="space-y-8 animate-fade-in relative">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -115,37 +116,45 @@ export default async function DashboardPage() {
                             )}
                         </div>
                         <div className="p-4 border-t border-[var(--wat-glass-border)] bg-[var(--wat-glass-highlight)]/30 hover:bg-[var(--wat-glass-highlight)]/50 transition-colors">
-                            <Link
+                            <SmartLink
                                 href="/dashboard/projects"
                                 className="flex items-center justify-center gap-2 text-sm font-medium text-[var(--wat-secondary)] hover:text-white transition-colors group"
                             >
                                 عرض كل الأرشيف <span className="text-lg group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1">→</span>
-                            </Link>
+                            </SmartLink>
                         </div>
                     </CardContent>
                 </Card>
 
-                {/* Quick Actions */}
-                <Card className="glass h-fit sticky top-24 border-[var(--wat-glass-border)] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] backdrop-blur-xl">
-                    <CardHeader className="bg-gradient-to-r from-[var(--wat-glass-highlight)] to-transparent">
-                        <CardTitle className="text-lg text-[var(--wat-accent)] flex items-center gap-2">
-                            ⚡ عمليات سريعة
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6 pt-0 grid gap-4 mt-4">
-                        {quickActions.map((action, i) => (
-                            <Link
-                                key={i}
-                                href={action.href}
-                                className="flex items-center gap-4 p-4 rounded-xl bg-[var(--wat-surface)]/50 border border-[var(--wat-glass-border)] hover:border-[var(--wat-primary)] hover:bg-[var(--wat-surface)] hover:shadow-[0_0_20px_rgba(255,215,0,0.2)] transition-all duration-300 group relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                                <span className="text-2xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">{action.icon}</span>
-                                <span className="font-medium text-[var(--wat-text-muted)] group-hover:text-white transition-colors">{action.label}</span>
-                            </Link>
-                        ))}
-                    </CardContent>
-                </Card>
+                {/* Right Column: BioAuth + Quick Actions */}
+                <div className="space-y-6">
+                    {/* BioAuth Component */}
+                    <div className="animate-fade-in-delay" style={{ animationDelay: '0.3s' }}>
+                        <BioAuth />
+                    </div>
+
+                    {/* Quick Actions */}
+                    <Card className="glass h-fit sticky top-24 border-[var(--wat-glass-border)] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] backdrop-blur-xl">
+                        <CardHeader className="bg-gradient-to-r from-[var(--wat-glass-highlight)] to-transparent">
+                            <CardTitle className="text-lg text-[var(--wat-accent)] flex items-center gap-2">
+                                ⚡ عمليات سريعة
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6 pt-0 grid gap-4 mt-4">
+                            {quickActions.map((action, i) => (
+                                <SmartLink
+                                    key={i}
+                                    href={action.href}
+                                    className="flex items-center gap-4 p-4 rounded-xl bg-[var(--wat-surface)]/50 border border-[var(--wat-glass-border)] hover:border-[var(--wat-primary)] hover:bg-[var(--wat-surface)] hover:shadow-[0_0_20px_rgba(255,215,0,0.2)] transition-all duration-300 group relative overflow-hidden"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                    <span className="text-2xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">{action.icon}</span>
+                                    <span className="font-medium text-[var(--wat-text-muted)] group-hover:text-white transition-colors">{action.label}</span>
+                                </SmartLink>
+                            ))}
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </div>
     )
