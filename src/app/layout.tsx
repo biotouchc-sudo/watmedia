@@ -34,6 +34,7 @@ import { GlobalCanvas } from '@/components/layout/GlobalCanvas'
 import { SmartToaster } from '@/components/ui/SmartToaster'
 import { LivingBackground } from '@/components/features/LivingBackground'
 import { VoiceInterface } from '@/components/features/VoiceInterface'
+import { Footer } from '@/components/layout/Footer'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -129,6 +130,7 @@ export default function RootLayout({
                                         }),
                                     }}
                                 />
+                                <Footer />
                             </ScrollSmoother>
                         </body>
                     </CursorProvider>

@@ -1,27 +1,45 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Loading() {
     return (
-        <div className="min-h-screen bg-[var(--wat-background)] flex items-center justify-center">
-            <div className="text-center">
-                {/* Animated Logo */}
-                <div className="relative inline-block mb-8">
-                    <div className="text-4xl font-bold gradient-text animate-pulse">
-                        WATMEDIA
-                    </div>
-                    <div className="absolute -inset-4 bg-[var(--wat-primary)] opacity-20 blur-3xl rounded-full animate-pulse" />
+        <div className="min-h-screen bg-[var(--wat-background)] flex items-center justify-center overflow-hidden">
+            <div className="flex flex-col items-center">
+                {/* Minimal Logo */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-4xl font-bold tracking-tighter text-white mb-8"
+                >
+                    WATMEDIA
+                </motion.div>
+
+                {/* Abstract Progress Bar */}
+                <div className="relative w-48 h-[2px] bg-white/10 overflow-hidden rounded-full">
+                    <motion.div
+                        className="absolute inset-0 bg-[var(--wat-primary)]"
+                        initial={{ x: "-100%" }}
+                        animate={{ x: "0%" }}
+                        transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            repeatType: "loop"
+                        }}
+                    />
                 </div>
 
-                {/* Loading Spinner */}
-                <div className="flex justify-center mb-6">
-                    <div className="relative w-16 h-16">
-                        <div className="absolute inset-0 rounded-full border-4 border-[var(--wat-glass-border)]" />
-                        <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[var(--wat-primary)] animate-spin" />
-                    </div>
-                </div>
-
-                {/* Loading Text */}
-                <p className="text-[var(--wat-text-muted)] text-sm animate-pulse">
-                    جاري التحميل...
-                </p>
+                {/* Subtle Status */}
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.5 }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-4 text-xs tracking-widest text-[var(--wat-primary)] uppercase"
+                >
+                    Loading Protocol
+                </motion.p>
             </div>
         </div>
     )

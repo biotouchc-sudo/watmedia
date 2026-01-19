@@ -1,141 +1,126 @@
-import Link from 'next/link'
+"use client";
 
-const footerLinks = {
-    services: [
-        { name: 'Architect Core', href: '/services/architect-core' },
-        { name: 'Visual Pulse', href: '/services/visual-pulse' },
-        { name: 'Growth Engine', href: '/services/growth-engine' },
-    ],
-    company: [
-        { name: 'من نحن', href: '/about' },
-        { name: 'أعمالنا', href: '/portfolio' },
-        { name: 'اتصل بنا', href: '/contact' },
-    ],
-    legal: [
-        { name: 'سياسة الخصوصية', href: '/privacy' },
-        { name: 'الشروط والأحكام', href: '/terms' },
-    ],
-}
+import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-const socialLinks = [
-    { name: 'Twitter', href: '#', icon: '𝕏' },
-    { name: 'LinkedIn', href: '#', icon: 'in' },
-    { name: 'Instagram', href: '#', icon: '📸' },
-]
+/**
+ * MEGA FOOTER (L200-L260 Compliant)
+ * A professional, multi-column footer for luxury agencies.
+ */
 
 export function Footer() {
-    return (
-        <footer className="bg-[var(--wat-surface)] border-t border-[var(--wat-glass-border)] relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--wat-primary)] to-transparent opacity-50" />
+    const pathname = usePathname();
+    const isHome = pathname === "/";
+    const currentYear = new Date().getFullYear();
 
-            <div className="mx-auto max-w-7xl px-6 py-16 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                    {/* Brand Node */}
-                    <div className="space-y-6">
-                        <div className="relative inline-block">
-                            <h2 className="text-3xl font-bold gradient-text tracking-tight scale-110 origin-left">WATMEDIA</h2>
-                            <div className="absolute -inset-4 bg-[var(--wat-primary)] opacity-10 blur-xl rounded-full -z-10 animate-pulse-slow" />
-                        </div>
-                        <p className="text-sm text-[var(--wat-text-muted)] max-w-xs leading-relaxed">
-                            مهندسو النمو الرقمي. <br />
-                            نحن لا نتوقع النتائج، نحن نهندسها.
+    const sections = [
+        {
+            title: "الشركة",
+            links: [
+                { label: "من نحن", href: "/about" },
+                { label: "أعمالنا", href: "/portfolio" },
+                { label: "خدماتنا", href: "/services" },
+                { label: "مسيرتنا", href: "/about#journey" },
+            ]
+        },
+        {
+            title: "الخدمات",
+            links: [
+                { label: "Architect Core", href: "/services/architect-core" },
+                { label: "Visual Pulse", href: "/services/visual-pulse" },
+                { label: "Growth Engine", href: "/services/growth-engine" },
+                { label: "Conversion Flow", href: "/services/conversion-flow" },
+            ]
+        },
+        {
+            title: "القانونية",
+            links: [
+                { label: "سياسة الخصوصية", href: "/privacy" },
+                { label: "الشروط والأحكام", href: "/terms" },
+                { label: "إخلاء المسؤولية", href: "/disclaimer" },
+            ]
+        }
+    ];
+
+    return (
+        <footer className="relative bg-[var(--wat-surface)] pt-24 pb-12 overflow-hidden">
+            {/* Top Border Gradient */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--wat-primary)]/30 to-transparent" />
+
+            <div className="container mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+
+                    {/* Brand Column */}
+                    <div className="lg:col-span-4">
+                        <Link href="/" className="inline-block mb-6">
+                            <span className="text-3xl font-bold tracking-tighter text-white">
+                                WATMEDIA
+                            </span>
+                        </Link>
+                        <p className="text-[var(--wat-text-muted)] leading-relaxed mb-8 max-w-sm">
+                            نصوغ السيادة الرقمية للعلامات التجارية التي تقود المستقبل.
+                            دمجنا الفن بالتكنولوجيا لنخلق تجارب استثنائية.
                         </p>
 
-                        {/* Social Signals */}
-                        <div className="flex gap-4 pt-2">
-                            {socialLinks.map((social) => (
-                                <Link
-                                    key={social.name}
-                                    href={social.href}
-                                    className="w-12 h-12 rounded-full glass flex items-center justify-center text-lg hover:border-[var(--wat-primary)] hover:text-white hover:bg-[var(--wat-primary)]/10 transition-all duration-300 hover:scale-110 group shadow-lg"
+                        <div className="flex gap-4">
+                            {/* Social Icons (Placeholders) */}
+                            {["twitter", "instagram", "linkedin"].map(platform => (
+                                <a
+                                    key={platform}
+                                    href={`#${platform}`}
+                                    className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-[var(--wat-primary)] hover:border-[var(--wat-primary)] transition-colors"
+                                    aria-label={platform}
                                 >
-                                    <span className="group-hover:animate-spin-slow">{social.icon}</span>
-                                </Link>
+                                    <span className="capitalize">{platform[0]}</span>
+                                </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Service Node */}
-                    <div>
-                        <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--wat-primary)] animate-pulse" />
-                            خدماتنا
-                        </h3>
-                        <ul className="space-y-4">
-                            {footerLinks.services.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-[var(--wat-text-muted)] hover:text-[var(--wat-primary)] transition-all duration-300 flex items-center gap-2 hover:translate-x-1"
-                                    >
-                                        <span className="opacity-0 hover:opacity-100 transition-opacity">›</span>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Company Node */}
-                    <div>
-                        <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--wat-secondary)] animate-pulse" />
-                            الشركة
-                        </h3>
-                        <ul className="space-y-4">
-                            {footerLinks.company.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-[var(--wat-text-muted)] hover:text-[var(--wat-secondary)] transition-all duration-300 flex items-center gap-2 hover:translate-x-1"
-                                    >
-                                        <span className="opacity-0 hover:opacity-100 transition-opacity">›</span>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Legal Node */}
-                    <div>
-                        <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-                            قانوني
-                        </h3>
-                        <ul className="space-y-4">
-                            {footerLinks.legal.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-[var(--wat-text-muted)] hover:text-red-400 transition-all duration-300 flex items-center gap-2 hover:translate-x-1"
-                                    >
-                                        <span className="opacity-0 hover:opacity-100 transition-opacity">›</span>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                    {/* Links Columns */}
+                    <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+                        {sections.map(section => (
+                            <div key={section.title}>
+                                <h4 className="text-white font-bold mb-6">{section.title}</h4>
+                                <ul className="space-y-4">
+                                    {section.links.map(link => (
+                                        <li key={link.href}>
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-[var(--wat-text-muted)] hover:text-[var(--wat-primary)] transition-colors inline-flex items-center group"
+                                            >
+                                                <span className="w-0 group-hover:w-2 transition-all duration-300 h-[1px] bg-[var(--wat-primary)] mr-0 group-hover:mr-2" />
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* System Status & Copyright */}
-                <div className="mt-16 pt-8 border-t border-[var(--wat-glass-border)] flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border-[var(--wat-glass-border)] bg-[var(--wat-surface)]/50">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]" />
-                        <span className="text-xs font-mono text-[var(--wat-text-muted)] tracking-wider">ALL SYSTEMS OPERATIONAL</span>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-right">
-                        <p className="text-xs text-[var(--wat-text-muted)]">
-                            © {new Date().getFullYear()} WATMEDIA. جميع الحقوق محفوظة.
-                        </p>
-                        <p className="text-xs text-[var(--wat-text-muted)] flex items-center gap-1">
-                            صُنع بـ <span className="text-red-500 animate-pulse">❤</span> في المملكة العربية السعودية
-                        </p>
+                {/* Bottom Bar */}
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-sm text-[var(--wat-text-muted)]">
+                        © {currentYear} WATMEDIA. جميع الحقوق محفوظة.
+                    </p>
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-xs text-[var(--wat-text-muted)] tracking-widest uppercase">
+                            Systems Operational
+                        </span>
                     </div>
                 </div>
             </div>
+
+            {/* Background Noise/Effect */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.02]"
+                style={{ backgroundImage: 'var(--noise-pattern)' }}
+            />
         </footer>
-    )
+    );
 }

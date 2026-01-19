@@ -1,66 +1,69 @@
-import Link from 'next/link'
+"use client";
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen bg-[var(--wat-bg)] flex items-center justify-center px-6">
-            <div className="text-center max-w-lg">
-                {/* 404 Illustration */}
-                <div className="relative mb-8">
-                    <span className="text-[150px] font-bold gradient-text opacity-20">
-                        404
-                    </span>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-6xl">🔍</span>
-                    </div>
-                </div>
+        <div className="min-h-screen bg-[var(--wat-bg)] flex items-center justify-center px-6 relative overflow-hidden">
+            {/* Background Texture */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                    backgroundImage: "radial-gradient(circle at center, var(--wat-primary-glow) 0%, transparent 70%)"
+                }}
+            />
 
-                {/* Title */}
-                <h1 className="text-4xl font-bold text-white mb-4">
-                    الصفحة غير موجودة
-                </h1>
+            <div className="relative z-10 text-center max-w-2xl">
+                {/* Large 404 Typography */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-[120px] md:text-[200px] leading-none font-bold text-[var(--wat-primary)] opacity-10 select-none"
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                >
+                    404
+                </motion.h1>
 
-                {/* Message */}
-                <p className="text-[var(--wat-text-muted)] mb-8">
-                    عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.
-                    تأكد من صحة الرابط أو عد للصفحة الرئيسية.
-                </p>
-
-                {/* Quick Links */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <Link
-                        href="/"
-                        className="px-8 py-4 bg-[var(--wat-primary)] hover:bg-[var(--wat-secondary)] hover:text-black text-white font-medium rounded-full transition-all duration-300 glow"
+                <div className="mt-[-40px] md:mt-[-80px]">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-3xl md:text-5xl font-bold text-white mb-6"
                     >
-                        العودة للرئيسية
-                    </Link>
-                    <Link
-                        href="/contact"
-                        className="px-8 py-4 glass rounded-full font-medium text-[var(--wat-text)] hover:border-[var(--wat-primary)] transition-all duration-300"
-                    >
-                        اتصل بنا
-                    </Link>
-                </div>
+                        الصفحة مفقودة
+                    </motion.h2>
 
-                {/* Helpful Links */}
-                <div className="glass p-6 rounded-2xl">
-                    <h3 className="text-sm font-semibold text-[var(--wat-secondary)] mb-4">
-                        روابط مفيدة
-                    </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        {[
-                            { href: '/services', label: 'خدماتنا' },
-                            { href: '/portfolio', label: 'أعمالنا' },
-                            { href: '/about', label: 'من نحن' },
-                        ].map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-sm text-[var(--wat-text-muted)] hover:text-white transition-colors"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-[var(--wat-text-muted)] text-lg mb-10 max-w-lg mx-auto"
+                    >
+                        يبدو أنك وصلت إلى قطاع غير مستكشف في البروتوكول.
+                        <br />
+                        البيانات المطلوبة غير متاحة حالياً.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-col sm:flex-row gap-4 justify-center"
+                    >
+                        <Link
+                            href="/"
+                            className="px-8 py-3 bg-[var(--wat-primary)] text-black font-bold rounded-lg hover:bg-white transition-all duration-300"
+                        >
+                            العودة للقاعدة
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="px-8 py-3 border border-white/10 text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+                        >
+                            الإبلاغ عن خطأ
+                        </Link>
+                    </motion.div>
                 </div>
             </div>
         </div>

@@ -39,14 +39,19 @@ export function Header() {
             <nav className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
                 {/* Brand Identity */}
                 <div className="flex items-center gap-6 group">
-                    <SmartLink href="/" className="relative flex items-center gap-3" cursorType="video">
-                        {/* Logo Icon (Replaced text with dynamic logo concept if image unavailable, leveraging emoji for now or just text) */}
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--wat-primary)] to-[var(--wat-secondary)] flex items-center justify-center text-black font-bold text-xl shadow-[0_0_20px_var(--wat-primary)] group-hover:rotate-12 transition-transform duration-500">
+                    <SmartLink href="/" className="relative flex items-center gap-4" cursorType="video">
+                        {/* Logo Icon */}
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--wat-primary)] to-[var(--wat-primary-dim)] flex items-center justify-center text-black font-black text-2xl shadow-[0_0_25px_rgba(230,213,172,0.3)] group-hover:rotate-12 transition-transform duration-500">
                             W
                         </div>
-                        <span className="text-2xl font-bold gradient-text tracking-tight">
-                            WATMEDIA
-                        </span>
+                        <div className="flex flex-col">
+                            <span className="text-2xl font-black tracking-tighter text-white leading-none">
+                                WATMEDIA
+                            </span>
+                            <span className="text-[10px] tracking-[0.2em] text-[var(--wat-primary)] uppercase font-medium">
+                                Sovereignty
+                            </span>
+                        </div>
                     </SmartLink>
                     <div className="hidden md:block opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                         <StatusPulse />
