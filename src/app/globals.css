@@ -1,48 +1,111 @@
 @import "tailwindcss";
 
+@theme {
+  /* MOTION TOKENS (L210) */
+  --ease-confident: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ANIMATION TOKENS */
+  --animate-slide-in-up: slideInUp 0.8s var(--ease-confident) forwards;
+  --animate-fade-in: fadeIn 0.6s var(--ease-subtle) forwards;
+  --animate-pulse-slow: pulseSlow 4s ease-in-out infinite;
+
+  /* KEYFRAMES */
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulseSlow {
+
+    0%,
+    100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════
    WATMEDIA DESIGN TOKENS - Based on Constitution V2
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  /* WATMEDIA Design Tokens - Supreme Edition */
-  --wat-primary: #FFD700;
-  /* Rich Gold */
-  --wat-primary-dim: #D4AF37;
-  --wat-secondary: #00E5FF;
-  /* Electric Cyan */
-  --wat-accent: #FF0055;
-  /* Neon Red for accents */
+  /* 🦅 WATMEDIA: VISUAL SOVEREIGNTY (Obsidian & Champagne) */
 
-  /* Deep Space Theme */
+  /* LUXURY METALS */
+  --wat-primary: #E6D5AC;
+  /* Champagne Gold */
+  --wat-primary-dim: #C4A470;
+  /* Antique Brass */
+  --wat-primary-glow: rgba(230, 213, 172, 0.15);
+
+  /* MONOLITH NEUTRALS */
+  --wat-secondary: #E5E5E5;
+  /* Platinum */
+  --wat-accent: #FFFFFF;
+  /* Diamond White */
+
+  /* OBSIDIAN DEPTHS */
   --wat-bg: #050505;
-  --wat-surface: #0f0f0f;
-  --wat-surface-highlight: #1a1a1a;
+  /* Void Black */
+  --wat-surface: #0E0E0E;
+  /* Obsidian */
+  --wat-surface-highlight: #1A1A1A;
+  /* Graphite */
 
-  /* Advanced Glass */
-  --wat-glass-bg: rgba(20, 20, 20, 0.65);
-  --wat-glass-border: rgba(255, 255, 255, 0.08);
-  --wat-glass-highlight: rgba(255, 255, 255, 0.05);
+  /* ADVANCED GLASS */
+  --wat-glass-bg: rgba(10, 10, 10, 0.7);
+  /* Darker, richer glass */
+  --wat-glass-border: rgba(255, 255, 255, 0.06);
+  /* Subtle framing */
+  --wat-glass-highlight: rgba(255, 255, 255, 0.03);
 
-  /* Mappings / Aliases */
+  /* ALIASES */
   --wat-background: var(--wat-bg);
   --background: var(--wat-bg);
   --foreground: var(--wat-text-main);
 
-  /* Typography */
-  --wat-text-main: #FFFFFF;
-  --wat-text-muted: #94A3B8;
+  /* TYPOGRAPHY */
+  --wat-text-main: #F0F0F0;
+  --wat-text-muted: #888888;
 
-  /* Glassmorphism */
-  --wat-glass-blur: 12px;
+  /* KINETIC TOKENS */
+  --ease-confident: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Gradients */
-  --wat-gradient-primary: linear-gradient(135deg, var(--wat-primary), var(--wat-secondary));
-  --wat-gradient-glow: radial-gradient(circle at 50% 0%, rgba(145, 147, 110, 0.3), transparent 50%);
+  /* TEXTURES */
+  --noise-pattern: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 
-  /* Shadows */
-  --wat-shadow-glow: 0 0 30px rgba(145, 147, 110, 0.2);
-  --wat-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  /* GRADIENTS */
+  --wat-gradient-primary: linear-gradient(135deg, var(--wat-primary), var(--wat-primary-dim));
+  --wat-gradient-dark: linear-gradient(to bottom, transparent, var(--wat-bg));
+
+  /* SHADOWS */
+  --wat-shadow-glow: 0 0 40px var(--wat-primary-glow);
+  --wat-shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 
   /* Fonts */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -55,6 +118,20 @@
     background: var(--wat-bg);
     color: var(--wat-text-main);
     font-family: var(--font-sans);
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--noise-pattern);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
   }
 }
 
@@ -136,6 +213,8 @@ html {
   opacity: 0;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }

@@ -1,75 +1,119 @@
+"use client";
+
 import { EcosystemSection } from '@/components/home/EcosystemSection'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { PhysicsReveal } from '@/components/ui/PhysicsReveal'
+import { Marquee } from '@/components/ui/Marquee'
+import { MagneticButton } from '@/components/ui/MagneticButton'
 
 export default function Home() {
     return (
-        <div className="relative flex min-h-screen flex-col items-center justify-center bg-[var(--wat-background)] text-white overflow-hidden">
-            {/* Background Glow Effect - Magnetic Pulse */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(145,147,110,0.15)_0%,transparent_60%)] pointer-events-none animate-pulse-slow" />
-            <div className="absolute -bottom-32 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(0,242,254,0.1)_0%,transparent_60%)] pointer-events-none blur-3xl opacity-50" />
+        <div className="relative min-h-screen bg-[var(--wat-background)] text-white overflow-hidden selection:bg-[var(--wat-primary)] selection:text-black">
 
-            <main className="relative z-10 flex flex-col items-center gap-12 text-center px-6 animate-fade-in w-full pt-20">
-                {/* Logo & Hero - Magnetic Core */}
-                <div className="relative group cursor-default">
-                    <h1 className="text-7xl md:text-9xl font-bold tracking-tighter gradient-text animate-slide-in-up drop-shadow-2xl">
-                        WATMEDIA
-                    </h1>
-                    <div className="absolute inset-0 bg-[var(--wat-primary)] opacity-0 group-hover:opacity-10 blur-[100px] transition-opacity duration-1000 -z-10" />
-                    <div className="absolute -inset-8 border border-[var(--wat-primary)]/10 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 pointer-events-none" />
+            {/* Ambient Noise Texture is applied via globals.css on body */}
+
+            {/* Hero Section - Cinematic Split */}
+            <main className="relative z-10 flex flex-col items-center pt-32 pb-20 px-4 md:px-8">
+
+                {/* Massive Typography */}
+                <div className="relative w-full max-w-[1400px] mx-auto text-center md:text-left flex flex-col md:gap-4 overflow-hidden">
+                    <PhysicsReveal className="w-full">
+                        <h1 className="text-[15vw] leading-[0.8] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 animate-slide-in-up mix-blend-difference">
+                            WATMEDIA
+                        </h1>
+                    </PhysicsReveal>
+
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full mt-8 md:mt-0 px-2">
+                        <p className="text-xl md:text-2xl text-[var(--wat-primary)] font-mono tracking-widest uppercase animate-fade-in-delay opacity-0 [animation-delay:400ms]">
+                            A Digital Sovereignty Agency
+                        </p>
+
+                        <p className="text-sm md:text-base text-[var(--wat-text-muted)] max-w-md text-right hidden md:block animate-fade-in-delay opacity-0 [animation-delay:600ms]">
+                            نحن لا نبني مواقع إلكترونية، نحن نشيد صروحاً رقمية. <br />
+                            الدمج الكامل بين <span className="text-white">الذكاء الاستراتيجي</span> و <span className="text-white">الجمال المطلق</span>.
+                        </p>
+                    </div>
                 </div>
 
-                {/* Tagline */}
-                <p className="text-2xl md:text-3xl text-[var(--wat-text-muted)] max-w-2xl mx-auto animate-fade-in-delay leading-relaxed">
-                    مهندسو النمو الرقمي. <br className="hidden md:block" />
-                    <span className="text-white font-medium inline-block hover:translate-x-1 transition-transform duration-500 cursor-default">نحن لا نتوقع النتائج، نحن نهندسها.</span>
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col md:flex-row gap-6 mt-8 animate-fade-in-delay items-center">
-                    <SmartLink
-                        href="/dashboard"
-                        cursorType="button"
-                        className="group relative px-10 py-5 bg-[var(--wat-primary)] text-white font-bold text-lg rounded-full transition-all duration-300 glow hover:scale-105 hover:bg-[var(--wat-secondary)] hover:text-black shadow-[0_0_30px_rgba(255,215,0,0.3)] hover:shadow-[0_0_50px_rgba(255,215,0,0.6)]"
-                    >
-                        <span className="relative z-10 flex items-center gap-2">
-                            ابدأ رحلتك
-                            <span className="text-xl group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1">→</span>
-                        </span>
-                    </SmartLink>
-                    <SmartLink
-                        href="/portfolio"
-                        cursorType="button"
-                        className="group px-10 py-5 glass rounded-full font-bold text-lg text-[var(--wat-text)] hover:border-[var(--wat-primary)] transition-all duration-300 hover:scale-105 hover:bg-[var(--wat-surface-highlight)] flex items-center gap-2"
-                    >
-                        استعرض أعمالنا
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity">✨</span>
-                    </SmartLink>
-                </div>
-
-                {/* Features Grid - Scroll Reveal */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-6xl w-full perspective-1000">
-                    {[
-                        { icon: "🏗️", title: "Architect Core", desc: "هندسة برمجية صلبة غير قابلة للكسر. بنيت لتبقى وتتوسع." },
-                        { icon: "🎨", title: "Visual Pulse", desc: "تصميمات تخطف الأنفاس. هوية بصرية لا يمكن تجاهلها." },
-                        { icon: "🚀", title: "Growth Engine", desc: "استراتيجيات نمو عدوانية. تحويل الزوار إلى عملاء دائمين." },
-                    ].map((feature, i) => (
-                        <PhysicsReveal
-                            key={i}
-                            className="glass p-8 rounded-3xl text-center border-[var(--wat-glass-border)] hover:border-[var(--wat-primary)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group"
+                {/* Primary CTA Cluster */}
+                <div className="flex flex-wrap gap-6 mt-16 md:mt-24 w-full max-w-[1400px] justify-center md:justify-start animate-fade-in-delay opacity-0 [animation-delay:800ms]">
+                    <MagneticButton strength={0.3} className="group">
+                        <SmartLink
+                            href="/dashboard"
+                            className="px-12 py-6 bg-[var(--wat-primary)] text-black font-bold text-xl rounded-full transition-all duration-500 hover:bg-white hover:scale-105 shadow-[0_0_40px_rgba(230,213,172,0.3)] flex items-center gap-3"
                         >
-                            <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">{feature.icon}</div>
-                            <h3 className="text-2xl font-bold text-[var(--wat-secondary)] mb-3 group-hover:text-white transition-colors">{feature.title}</h3>
-                            <p className="text-[var(--wat-text-muted)] leading-relaxed group-hover:text-white/80 transition-colors">{feature.desc}</p>
-                        </PhysicsReveal>
-                    ))}
+                            ابدأ الرحلة
+                            <span className="group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1">→</span>
+                        </SmartLink>
+                    </MagneticButton>
+
+                    <MagneticButton strength={0.2} className="group">
+                        <SmartLink
+                            href="/portfolio"
+                            className="px-12 py-6 glass rounded-full font-bold text-xl text-white hover:bg-white/10 transition-all duration-500 flex items-center gap-3 border border-white/10"
+                        >
+                            استكشف الأعمال
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">⚡</span>
+                        </SmartLink>
+                    </MagneticButton>
                 </div>
 
-                {/* Ecosystem Section - Operation Eclipse */}
-                <div className="w-full mt-24 border-t border-[var(--wat-glass-border)] pt-24 bg-gradient-to-b from-transparent to-black/30">
+                {/* Infinite Marquee Strip */}
+                <div className="w-full mt-32 border-y border-[var(--wat-glass-border)] bg-[var(--wat-surface)]/30 backdrop-blur-sm py-8 transform -skew-y-2 origin-left">
+                    <Marquee speed={30} pauseOnHover={false}>
+                        <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--wat-text-muted)] to-[var(--wat-text-muted)]/20 px-8">STRATEGY</span>
+                        <span className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--wat-primary)] px-8">DESIGN</span>
+                        <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--wat-text-muted)] to-[var(--wat-text-muted)]/20 px-8">TECHNOLOGY</span>
+                        <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--wat-text-muted)] to-[var(--wat-text-muted)]/20 px-8">GROWTH</span>
+                        <span className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--wat-secondary)] px-8">INTELLIGENCE</span>
+                    </Marquee>
+                </div>
+
+                {/* Bento Grid - Features */}
+                <div className="w-full max-w-[1400px] mt-32 grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6">
+                    {/* Large Card */}
+                    <PhysicsReveal className="md:col-span-4 md:row-span-2 glass rounded-[2rem] p-10 flex flex-col justify-between overflow-hidden relative group border-[var(--wat-glass-border)] hover:border-[var(--wat-primary-dim)] transition-colors duration-700">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--wat-primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div>
+                            <div className="w-16 h-16 rounded-2xl bg-[var(--wat-surface)] border border-[var(--wat-glass-border)] flex items-center justify-center text-3xl mb-6 shadow-2xl">🏛️</div>
+                            <h3 className="text-4xl font-bold text-white mb-4">Architect Core.</h3>
+                            <p className="text-xl text-[var(--wat-text-muted)] max-w-lg">
+                                بنية تحتية رقمية صممت لتعيش عقوداً. كود نظيف، أداء مرعب، وأمان سيبراني من المستوى الحكومي.
+                            </p>
+                        </div>
+                        <div className="mt-8 flex gap-2">
+                            <div className="h-1 flex-1 bg-[var(--wat-surface-highlight)] rounded-full overflow-hidden">
+                                <div className="h-full bg-[var(--wat-primary)] w-[85%] animate-pulse-glow" />
+                            </div>
+                            <span className="text-xs font-mono text-[var(--wat-primary)]">SCORE: 98/100</span>
+                        </div>
+                    </PhysicsReveal>
+
+                    {/* Medium Card 1 */}
+                    <PhysicsReveal className="md:col-span-2 glass rounded-[2rem] p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border-[var(--wat-glass-border)] hover:border-white/20">
+                        <div className="absolute top-0 right-0 p-32 bg-[var(--wat-secondary)]/5 blur-[80px] rounded-full pointer-events-none" />
+                        <h3 className="text-2xl font-bold text-white mb-2">Visual Pulse</h3>
+                        <p className="text-sm text-[var(--wat-text-muted)]">هوية بصرية تخطف الأنفاس.</p>
+                        <div className="mt-4 flex items-center justify-end">
+                            <span className="text-5xl group-hover:scale-125 transition-transform duration-500 delay-100">🎨</span>
+                        </div>
+                    </PhysicsReveal>
+
+                    {/* Medium Card 2 */}
+                    <PhysicsReveal className="md:col-span-2 glass rounded-[2rem] p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border-[var(--wat-glass-border)] hover:border-white/20">
+                        <h3 className="text-2xl font-bold text-white mb-2">Growth Engine</h3>
+                        <p className="text-sm text-[var(--wat-text-muted)]">نمو لا يتوقف.</p>
+                        <div className="mt-4 flex items-center justify-end">
+                            <span className="text-5xl group-hover:scale-125 transition-transform duration-500 delay-100 invert">📈</span>
+                        </div>
+                    </PhysicsReveal>
+                </div>
+
+                {/* Ecosystem Section */}
+                <div className="w-full mt-32">
                     <EcosystemSection />
                 </div>
             </main>
-        </div >
-    );
+        </div>
+    )
 }

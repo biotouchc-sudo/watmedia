@@ -27,32 +27,36 @@ export function MagneticButton({
 }: MagneticButtonProps) {
     const ref = useRef<HTMLButtonElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
+    const intentTimer = useRef<NodeJS.Timeout | null>(null);
+    const [isActive, setIsActive] = useState(false);
+
+    const handleMouseEnter = () => {
+        // Level 90: Intent-Based Hover Delay
+        // Only activate magnetism if user dwells for 120ms
+        intentTimer.current = setTimeout(() => {
+            setIsActive(true);
+        }, 120);
+    };
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!isActive) return;
+
         const { clientX, clientY } = e;
         if (ref.current) {
             const { left, top, width, height } = ref.current.getBoundingClientRect();
-
-            // Calculate center
             const centerX = left + width / 2;
             const centerY = top + height / 2;
-
-            // Calculate distance from center
             const deltaX = clientX - centerX;
             const deltaY = clientY - centerY;
 
-            // Apply magnetic force
-            const x = deltaX * strength;
-            const y = deltaY * strength;
-
-            setPosition({ x, y });
+            setPosition({ x: deltaX * strength, y: deltaY * strength });
         }
-
-        // Call original handler if exists
         onMouseMove?.(e);
     };
 
     const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (intentTimer.current) clearTimeout(intentTimer.current);
+        setIsActive(false);
         setPosition({ x: 0, y: 0 });
         onMouseLeave?.(e);
     };
@@ -60,6 +64,7 @@ export function MagneticButton({
     return (
         <motion.button
             ref={ref}
+            onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             animate={{ x: position.x, y: position.y }}
